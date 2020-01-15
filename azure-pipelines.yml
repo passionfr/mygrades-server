@@ -9,18 +9,19 @@ resources:
 - repo: self
 
 jobs:
-  - task: AzureFileCopy@3
-    inputs:
-      SourcePath: '$(Build.SourcesDirectory)\next-server\src\api'
-      azureSubscription: 'Visual Studio Enterprise – MPN(44678328-75c5-4e48-92c0-b2ab31d5166c)'
-      Destination: 'AzureBlob'
-      storage: 'mygradesapi'
-      ContainerName: '$web'
-#  - job: build
-#    displayName: build docker image
-#    pool:
-#      vmImage: 'ubuntu-16.04'
-#    steps:
+
+  - job: build
+    displayName: build docker image
+    pool:
+      vmImage: 'ubuntu-16.04'
+    steps:
+      - task: AzureFileCopy@3
+        inputs:
+          SourcePath: '$(Build.SourcesDirectory)\next-server\src\api'
+          azureSubscription: 'Visual Studio Enterprise – MPN(44678328-75c5-4e48-92c0-b2ab31d5166c)'
+          Destination: 'AzureBlob'
+          storage: 'mygradesapi'
+          ContainerName: '$web'
 #      - bash: |
 #          docker build -t $dockerRepo:$tag -f Dockerfile .
 #          docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASSWORD
