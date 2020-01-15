@@ -8,22 +8,19 @@ trigger:
 resources:
 - repo: self
 
-variables:
-  tag: '$(Build.BuildId)'
-
-stages:
-- stage: Build
-  displayName: Build image
-  jobs:  
-  - job: Build
-    displayName: Build
+jobs:
+  - job: build
+    displayName: build docker image
     pool:
-      vmImage: 'ubuntu-latest'
+      vmImage: 'ubuntu-16.04'
     steps:
-    - task: Docker@2
-      displayName: Build an image
-      inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/docker/nginx/Dockerfile'
-        tags: |
-          $(tag)
+      - bash: |
+          docker build -t $dockerRepo:$tag -f Dockerfile .
+          docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASSWORD
+          docker push $dockerRepo:$tag
+        workingDirectory: 'next-server'
+        env:
+          DOCKER_REGISTRY_PASSWORD: $(DOCKER_REGISTRY_PASSWORD)
+          DOCKER_REGISTRY_USER: $(DOCKER_REGISTRY_USER)
+          dockerRepo: mygradesreloaded/server
+          tag: '$(Build.BuildId)'
