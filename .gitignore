@@ -3,12 +3,13 @@ Thumbs.db
 
 
 /vendor
-/node_modules
+node_modules
 Homestead.yaml
 Homestead.json
 .env
 _ide_helper.php
 docker/nginx-proxy
+
 
 
 
