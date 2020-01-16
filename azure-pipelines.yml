@@ -18,7 +18,7 @@ jobs:
       - task: AzureFileCopy@3
         inputs:
           SourcePath: '$(Build.SourcesDirectory)\next-server\src\api'
-          azureSubscription: 'Visual Studio Enterprise – MPN(44678328-75c5-4e48-92c0-b2ab31d5166c)'
+          azureSubscription: 'MyGradesReloaded - Azure'
           Destination: 'AzureBlob'
           storage: 'mygradesapi'
           ContainerName: '$web'
