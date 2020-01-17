@@ -1,5 +1,4 @@
 var fs = require('fs');
-var tsvParser = require('tsv-parser')
 
 // From https://github.com/ponyesteves/tsv-parser/blob/master/src/index.js
 const _objWithFirstAsHeader = (rowAry) => {
