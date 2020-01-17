@@ -8,13 +8,13 @@ var c = new Crawler({
         if (err) {
             console.error(err.stack);
         } else {
-            if (res.options.level === "src") {
+            if (res.options.level === "old") {
                 fs.createWriteStream(res.options.filename).write(res.body);
                 JSON.parse(res.body).forEach(uni => {
                     c.queue({
                         uri: "http://mygrades.dev/api/v1/universities/" + uni.university_id + "?detailed=true",
                         filename: uni.university_id + ".json",
-                        level: "src/universities"
+                        level: "old/universities"
                     })
                 })
             } else {
@@ -29,7 +29,7 @@ var c = new Crawler({
 });
 
 c.queue({
-    uri: "http://mygrades.dev/api/v1/universities",
+    uri: "http://mygrades.dev/api/v1/universities?published=true",
     filename: "universities.json",
-    level: "src"
+    level: "old"
 });

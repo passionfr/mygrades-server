@@ -4,6 +4,7 @@ Thumbs.db
 
 /vendor
 node_modules
+dist
 Homestead.yaml
 Homestead.json
 .env
