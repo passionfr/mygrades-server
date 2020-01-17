@@ -22,7 +22,7 @@ jobs:
           customCommand: 'run start'
       - task: AzureFileCopy@3
         inputs:
-          SourcePath: 'ext-server\src\api'
+          SourcePath: '$(Build.SourcesDirectory)\next-server\dist'
           azureSubscription: 'MyGradesReloaded - Azure'
           Destination: 'AzureBlob'
           storage: 'mygradesapi'
