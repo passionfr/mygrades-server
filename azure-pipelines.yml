@@ -15,9 +15,14 @@ jobs:
     pool:
       vmImage: 'windows-2019'
     steps:
+      - task: Npm@1
+        inputs:
+          command: 'custom'
+          workingDir: '$(Build.SourcesDirectory)\next-server'
+          customCommand: 'run start'
       - task: AzureFileCopy@3
         inputs:
-          SourcePath: '$(Build.SourcesDirectory)\next-server\src\api'
+          SourcePath: 'ext-server\src\api'
           azureSubscription: 'MyGradesReloaded - Azure'
           Destination: 'AzureBlob'
           storage: 'mygradesapi'
