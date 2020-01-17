@@ -10,6 +10,9 @@ universityDefinitionsFolder = './src/api/universities'
 universityDatabasePath = './src/api/hochschulkompass-alle-hochschulen.tsv'
 
 outputFolder = './dist'
+if (!fs.existsSync(outputFolder)) {
+    fs.mkdirSync(outputFolder);
+}
 
 universityDefinitions = fs.readdirSync(universityDefinitionsFolder);
 
