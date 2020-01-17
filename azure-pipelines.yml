@@ -15,11 +15,11 @@ jobs:
     pool:
       vmImage: 'windows-2019'
     steps:
-      - task: Npm@1
+      - task: CmdLine@2
         inputs:
-          command: 'custom'
-          workingDir: '$(Build.SourcesDirectory)\next-server'
-          customCommand: 'run start'
+          script: 'node index.js'
+          workingDirectory: '$(Build.SourcesDirectory)\next-server'
+          failOnStderr: true
       - task: AzureFileCopy@3
         inputs:
           SourcePath: '$(Build.SourcesDirectory)\next-server\dist'
