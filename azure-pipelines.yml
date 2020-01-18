@@ -11,7 +11,7 @@ resources:
 jobs:
 
   - job: build
-    displayName: build docker image
+    displayName: build and deploy configurations
     pool:
       vmImage: 'windows-2019'
     steps:
@@ -27,14 +27,11 @@ jobs:
           Destination: 'AzureBlob'
           storage: 'mygradesapi'
           ContainerName: '$web'
-#      - bash: |
-#          docker build -t $dockerRepo:$tag -f Dockerfile .
-#          docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASSWORD
-#          docker push $dockerRepo:$tag
-#        workingDirectory: 'next-server'
-#        env:
-#          DOCKER_REGISTRY_PASSWORD: $(DOCKER_REGISTRY_PASSWORD)
-#          DOCKER_REGISTRY_USER: $(DOCKER_REGISTRY_USER)
-#          dockerRepo: mygradesreloaded/server
-#          tag: '$(Build.BuildId)'
+
+      - task: AzureCLI@2
+        inputs:
+          azureSubscription: 'Visual Studio Enterprise – MPN(44678328-75c5-4e48-92c0-b2ab31d5166c)'
+          scriptType: 'bash'
+          scriptLocation: 'inlineScript'
+          inlineScript: 'az cdn endpoint purge -g Aquiver -n mygradesapi --profile-name Aquiver --content-paths ''/*'''
 
