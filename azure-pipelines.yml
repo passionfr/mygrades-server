@@ -31,7 +31,7 @@ jobs:
       - task: AzureCLI@2
         inputs:
           azureSubscription: 'Visual Studio Enterprise – MPN(44678328-75c5-4e48-92c0-b2ab31d5166c)'
-          scriptType: 'bash'
+          scriptType: 'ps'
           scriptLocation: 'inlineScript'
           inlineScript: 'az cdn endpoint purge -g Aquiver -n mygradesapi --profile-name Aquiver --content-paths ''/*'''
 
