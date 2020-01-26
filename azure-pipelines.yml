@@ -20,6 +20,18 @@ jobs:
           script: 'node index.js'
           workingDirectory: '$(Build.SourcesDirectory)\next-server'
           failOnStderr: true
+
+      # Previous v0.0.1 Endpoint
+      - task: AzureFileCopy@3
+        inputs:
+          SourcePath: '$(Build.SourcesDirectory)\next-server\dist'
+          azureSubscription: 'MyGradesReloaded - Azure'
+          Destination: 'AzureBlob'
+          storage: 'mygradesreloaded'
+          ContainerName: '$web'
+          BlobPrefix: 'api'
+
+      # Previous v0.0.1 Endpoint
       - task: AzureFileCopy@3
         inputs:
           SourcePath: '$(Build.SourcesDirectory)\next-server\dist'
