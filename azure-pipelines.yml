@@ -25,7 +25,7 @@ jobs:
       - task: AzureFileCopy@3
         inputs:
           SourcePath: '$(Build.SourcesDirectory)\next-server\dist'
-          azureSubscription: 'MyGradesReloaded - Azure'
+          azureSubscription: 'Aquiver.MyGradesReloaded'
           Destination: 'AzureBlob'
           storage: 'mygradesreloaded'
           ContainerName: '$web'
