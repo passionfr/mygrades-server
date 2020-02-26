@@ -84,7 +84,7 @@ jobs:
           scriptLocation: 'inlineScript'
           inlineScript: 'az cdn endpoint purge -g Aquiver -n mygradesapi --profile-name Aquiver --content-paths ''/*'''
 
-  - job: build-frontend
+  - job: buildFrontend
     displayName: build and deploy frontend
     pool:
       vmImage: 'windows-2019'
