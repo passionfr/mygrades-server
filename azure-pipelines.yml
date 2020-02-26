@@ -18,13 +18,13 @@ jobs:
       - task: CmdLine@2
         inputs:
           script: 'node index.js'
-          workingDirectory: '$(Build.SourcesDirectory)\next-server'
+          workingDirectory: '$(Build.SourcesDirectory)\server'
           failOnStderr: true
 
       # Previous v0.0.1 Endpoint
       - task: AzureFileCopy@3
         inputs:
-          SourcePath: '$(Build.SourcesDirectory)\next-server\dist'
+          SourcePath: '$(Build.SourcesDirectory)\server\dist'
           azureSubscription: 'Aquiver.MyGradesReloaded'
           Destination: 'AzureBlob'
           storage: 'mygradesreloaded'
@@ -34,7 +34,7 @@ jobs:
       # Previous v0.0.1 Endpoint
       - task: AzureFileCopy@3
         inputs:
-          SourcePath: '$(Build.SourcesDirectory)\next-server\dist'
+          SourcePath: '$(Build.SourcesDirectory)\server\dist'
           azureSubscription: 'MyGradesReloaded - Azure'
           Destination: 'AzureBlob'
           storage: 'mygradesapi'
@@ -55,18 +55,17 @@ jobs:
       - task: CmdLine@2
         inputs:
           script: 'npm install'
-          workingDirectory: '$(Build.SourcesDirectory)\next-frontend\mygradesreloaded'
-          failOnStderr: true
+          workingDirectory: '$(Build.SourcesDirectory)\frontend\mygradesreloaded'
           
       - task: CmdLine@2
         inputs:
           script: 'npm run build'
-          workingDirectory: '$(Build.SourcesDirectory)\next-frontend\mygradesreloaded'
+          workingDirectory: '$(Build.SourcesDirectory)\frontend\mygradesreloaded'
           failOnStderr: true
 
       - task: AzureFileCopy@3
         inputs:
-          SourcePath: '$(Build.SourcesDirectory)\next-frontend\mygradesreloaded\dist\mygradesreloaded'
+          SourcePath: '$(Build.SourcesDirectory)\frontend\mygradesreloaded\dist\mygradesreloaded'
           azureSubscription: 'Aquiver.MyGradesReloaded'
           Destination: 'AzureBlob'
           storage: 'mygradesreloaded'
