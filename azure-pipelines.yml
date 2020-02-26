@@ -61,7 +61,6 @@ jobs:
         inputs:
           script: 'npm run build'
           workingDirectory: '$(Build.SourcesDirectory)\frontend\mygradesreloaded'
-          failOnStderr: true
 
       - task: AzureFileCopy@3
         inputs:
