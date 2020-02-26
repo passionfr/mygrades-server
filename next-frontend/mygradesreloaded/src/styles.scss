@@ -41,12 +41,23 @@ ul:not([class]) li {
  * Desktop
  */
 @media (min-width: 720px) {
-    html#mainpage, #mainpage body {
+    html, body, app-root {
         height: 100%;
         margin: 0;
     }
 
-    #mainpage body {
+    body {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+    }
+
+    app-main {
+        height: 100%;
         display: -webkit-flex;
         display: flex;
         -webkit-align-items: center;
@@ -66,10 +77,17 @@ ul:not([class]) li {
 
     #logo {
         width: 300px;
-
         position: absolute;
         top: 75px;
         left: 0;
+    }
+
+    #reloaded {
+        font-size: 18px;
+        position: absolute;
+        top: 62px;
+        left: 250px;
+        transform: rotate(-20deg);
     }
 
     #teaser {
@@ -97,7 +115,7 @@ ul:not([class]) li {
         width: 420px;
         height: 500px;
 
-        background-image: url("img/screen-overview-left.png");
+        background-image: url("assets/image/screen-overview-left.png");
         background-size: cover;
     }
 
@@ -129,6 +147,14 @@ ul:not([class]) li {
         margin-bottom: 15px;
     }
 
+    #reloaded {
+        font-size: 12px;
+        position: relative;
+        top: -14px;
+        left: -7px;
+        // transform: rotate(20deg);
+    }
+
     #playstore {
         display: block;
         width: 37%;
@@ -139,7 +165,7 @@ ul:not([class]) li {
     #device {
         position: relative;
         clear: both;
-        background-image: url("img/screen-overview-flat.png");
+        background-image: url("assets/image/screen-overview-flat.png");
         background-size: cover;
 
         width: 350px;
