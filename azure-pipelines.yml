@@ -47,43 +47,6 @@ jobs:
           scriptLocation: 'inlineScript'
           inlineScript: 'az cdn endpoint purge -g Aquiver -n mygradesapi --profile-name Aquiver --content-paths ''/*'''
 
-  - job: build
-    displayName: build and deploy configurations
-    pool:
-      vmImage: 'windows-2019'
-    steps:
-      - task: CmdLine@2
-        inputs:
-          script: 'node index.js'
-          workingDirectory: '$(Build.SourcesDirectory)\next-server'
-          failOnStderr: true
-
-      # Previous v0.0.1 Endpoint
-      - task: AzureFileCopy@3
-        inputs:
-          SourcePath: '$(Build.SourcesDirectory)\next-server\dist'
-          azureSubscription: 'Aquiver.MyGradesReloaded'
-          Destination: 'AzureBlob'
-          storage: 'mygradesreloaded'
-          ContainerName: '$web'
-          BlobPrefix: 'api'
-
-      # Previous v0.0.1 Endpoint
-      - task: AzureFileCopy@3
-        inputs:
-          SourcePath: '$(Build.SourcesDirectory)\next-server\dist'
-          azureSubscription: 'MyGradesReloaded - Azure'
-          Destination: 'AzureBlob'
-          storage: 'mygradesapi'
-          ContainerName: '$web'
-
-      - task: AzureCLI@2
-        inputs:
-          azureSubscription: 'Visual Studio Enterprise – MPN(44678328-75c5-4e48-92c0-b2ab31d5166c)'
-          scriptType: 'ps'
-          scriptLocation: 'inlineScript'
-          inlineScript: 'az cdn endpoint purge -g Aquiver -n mygradesapi --profile-name Aquiver --content-paths ''/*'''
-
   - job: buildFrontend
     displayName: build and deploy frontend
     pool:
